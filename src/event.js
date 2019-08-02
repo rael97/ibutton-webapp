@@ -8,6 +8,7 @@ export default [
   {
     name: "APP_LOGOUT",
     callback: () => {
+      console.log('APP_LOGOUT called')
       this.$snackbar = {
         show: true,
         color: "green",

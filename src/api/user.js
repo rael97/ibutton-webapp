@@ -428,4 +428,6 @@ const getUser = limit => {
   return limit ? Items.slice(0, limit) : Items
 }
 
-export { Items, getUser, getUserById }
+const getTokenUser = user => this.axios.post("http://localhost:3000/v1/auth/login", user)
+
+export { Items, getUser, getUserById, getTokenUser }

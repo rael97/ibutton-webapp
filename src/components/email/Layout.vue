@@ -3,7 +3,7 @@
     <v-toolbar fixed app flat dark color="indigo" clipped-left class="mail-toolbar" id="topbar">
       <v-toolbar-side-icon class="hidden-sm-and-up" @click="toggleDrawer"></v-toolbar-side-icon>
       <v-avatar class="hidden-sm-and-down">
-        <img src="/static/m.png" alt="Vue Material Mail" />
+        <img src="/static/m.png" alt="iButton">
       </v-avatar>
       <v-toolbar-title class="ml-0 pl-3">
         <span class="hidden-sm-and-down">Mail</span>
@@ -15,15 +15,14 @@
         prepend-icon="search"
         label="What are you looking for?"
         class="hidden-sm-and-down"
-      >
-      </v-text-field>
+      ></v-text-field>
       <v-btn icon>
         <v-icon>notifications</v-icon>
       </v-btn>
       <v-menu offset-y origin="center center" :nudge-bottom="10" transition="scale-transition">
         <v-btn icon large flat slot="activator">
           <v-avatar size="32px">
-            <img src="https://randomuser.me/api/portraits/men/1.jpg" />
+            <img src="https://randomuser.me/api/portraits/men/1.jpg">
           </v-avatar>
         </v-btn>
         <v-list class="pa-0">
@@ -50,15 +49,13 @@
     </v-toolbar>
     <v-navigation-drawer class="mail-drawer" fixed clipped v-model="drawer" app>
       <div class="layout column pa-3">
-        <v-btn large block color="red" dark @click.stop="dialog = true"> + COMPOSE</v-btn>
+        <v-btn large block color="red" dark @click.stop="dialog = true">+ COMPOSE</v-btn>
       </div>
       <v-list class="mail-list" dense>
         <template v-for="item in menus">
           <v-layout row v-if="item.heading" align-center :key="item.heading">
             <v-flex xs12>
-              <v-subheader v-if="item.heading">
-                {{ item.heading }}
-              </v-subheader>
+              <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
               <v-divider></v-divider>
             </v-flex>
           </v-layout>

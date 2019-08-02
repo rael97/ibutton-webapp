@@ -1,4 +1,4 @@
-import { AuthLayout, DefaultLayout, ChatLayout } from "@/components/layouts"
+import { AuthLayout, DefaultLayout } from "@/components/layouts"
 
 export const publicRoute = [
   { path: "*", component: () => import(/* webpackChunkName: "errors-404" */ "@/views/error/NotFound.vue") },
@@ -46,7 +46,12 @@ export const protectedRoute = [
         meta: { title: "Home", group: "apps", icon: "dashboard" },
         component: () => import(/* webpackChunkName: "dashboard" */ "@/views/Dashboard.vue")
       },
-
+      {
+        path: "/buttons",
+        name: "buttons",
+        meta: { title: "Buttons", group: "apps", icon: "dashboard" },
+        component: () => import(/* webpackChunkName: "dashboard" */ "@/views/buttons/button.vue")
+      },
       {
         path: "/403",
         name: "Forbidden",
@@ -54,122 +59,32 @@ export const protectedRoute = [
         component: () => import(/* webpackChunkName: "error-403" */ "@/views/error/Deny.vue")
       }
     ]
-  },
-
-  //list
-  {
-    path: "/cms",
-    component: DefaultLayout,
-    redirect: "/cms/table",
-    meta: { title: "CMS", icon: "view_compact", group: "cms" },
-    children: [
-      {
-        path: "/cms/table",
-        name: "ListTable",
-        meta: { title: "CMS Table" },
-        component: () => import(/* webpackChunkName: "table" */ "@/views/list/Table.vue")
-      }
-    ]
-  },
-
-  //widgets
-  {
-    path: "/widgets",
-    component: DefaultLayout,
-    meta: { title: "Widget", icon: "widgets", group: "advance" },
-    redirect: "/widgets/chart",
-    children: [
-      {
-        path: "/widgets/chart",
-        name: "ChartWidget",
-        meta: { title: "Chart Widget" },
-        component: () => import(/* webpackChunkName: "chart-widget" */ "@/views/widgets/Chart.vue")
-      },
-      {
-        path: "/widgets/list",
-        name: "ListWidget",
-        meta: { title: "List Widget" },
-        component: () => import(/* webpackChunkName: "list-widget" */ "@/views/widgets/List.vue")
-      },
-      {
-        path: "/widgets/social",
-        name: "SocialWidget",
-        meta: { title: "Social Widget" },
-        component: () => import(/* webpackChunkName: "social-widget" */ "@/views/widgets/Social.vue")
-      },
-      {
-        path: "/widgets/statistic",
-        name: "StatisticWidget",
-        meta: { title: "Statistic Widget" },
-        component: () => import(/* webpackChunkName: "statistic-widget" */ "@/views/widgets/Statistic.vue")
-      }
-    ]
-  },
-
-  //media
-  {
-    path: "/media",
-    meta: { title: "Media", group: "apps", icon: "media" },
-    name: "Media",
-    props: route => ({ type: route.query.type }),
-    component: () => import(/* webpackChunkName: "routes" */ `@/views/Media.vue`)
-  },
+  }
 
   // chat app
-  {
-    path: "/chat",
-    name: "Chat",
-    component: ChatLayout,
-    redirect: {
-      path: "/chat/messaging"
-    },
-    meta: { title: "Chat", group: "apps", icon: "chat_bubble" },
-    children: [
-      {
-        path: "/chat/messaging/:uuid?",
-        name: "ChatMessaging",
-        props: true,
-        components: () => import(/* webpackChunkName: "chat-messaging" */ `@/components/chat/ChatMessaging.vue`)
-      },
-      {
-        path: "/chat/contact/:uuid?",
-        meta: {
-          public: true
-        },
-        name: "ChatContact",
-        components: () => import(/* webpackChunkName: "chat-contact" */ `@/components/chat/ChatContact.vue`)
-      }
-    ]
-  },
-
-  //mail app
-  {
-    path: "/mail",
-    meta: {
-      public: true
-    },
-    name: "Mail",
-    component: () => import(/* webpackChunkName: "routes" */ `@/components/email/Layout.vue`),
-    redirect: {
-      path: "/mail/all"
-    },
-    children: [
-      {
-        path: "/mail/:mailType",
-        meta: {
-          public: true
-        },
-        name: "MailIndex",
-        component: () => import(/* webpackChunkName: "routes" */ `@/components/email/List.vue`)
-      },
-      {
-        path: "/mail/0/:uuid",
-        meta: {
-          public: true
-        },
-        name: "MailDetail",
-        component: () => import(/* webpackChunkName: "routes" */ `@/components/email/Reply.vue`)
-      }
-    ]
-  }
+  // {
+  //   path: "/chat",
+  //   name: "Chat",
+  //   component: ChatLayout,
+  //   redirect: {
+  //     path: "/chat/messaging"
+  //   },
+  //   meta: { title: "Chat", group: "apps", icon: "chat_bubble" },
+  //   children: [
+  //     {
+  //       path: "/chat/messaging/:uuid?",
+  //       name: "ChatMessaging",
+  //       props: true,
+  //       components: () => import(/* webpackChunkName: "chat-messaging" */ `@/components/chat/ChatMessaging.vue`)
+  //     },
+  //     {
+  //       path: "/chat/contact/:uuid?",
+  //       meta: {
+  //         public: true
+  //       },
+  //       name: "ChatContact",
+  //       components: () => import(/* webpackChunkName: "chat-contact" */ `@/components/chat/ChatContact.vue`)
+  //     }
+  //   ]
+  // }
 ]

@@ -1,42 +1,32 @@
 <template>
   <div class="app-root">
     <router-view></router-view>
-    <!-- theme setting -->
-    <v-btn small fab dark falt fixed top="top" right="right" class="setting-fab" color="red" @click="openThemeSettings">
-      <v-icon>settings</v-icon>
-    </v-btn>
-    <!-- setting drawer -->
-    <v-navigation-drawer class="setting-drawer" temporary right v-model="rightDrawer" hide-overlay fixed>
-      <theme-settings></theme-settings>
-    </v-navigation-drawer>
-    <!-- global snackbar -->
-    <v-snackbar :timeout="3000" bottom right :color="snackbar.color" v-model="snackbar.show">
-      {{ snackbar.text }}
-      <v-btn dark flat @click.native="snackbar.show = false" icon>
-        <v-icon>close</v-icon>
-      </v-btn>
-    </v-snackbar>
   </div>
 </template>
 
 <script>
-import ThemeSettings from "@/components/ThemeSettings"
+// import ThemeSettings from "@/components/ThemeSettings"
 import AppEvents from "./event"
+// import func from "../vue-temp/vue-editor-bridge"
 
 export default {
   components: {
-    ThemeSettings
+    // ThemeSettings
   },
   data() {
     return {
-      rightDrawer: false,
-      snackbar: {
-        show: false,
-        text: "",
-        color: ""
-      }
+      rightDrawer: false
     }
   },
+  beforeMount() {
+    this.$vuetify.theme.primary = "#3f51b5"
+  },
+  mounted() {
+    this.$on("notification", () => {})
+    console.log("AppEvents: ")
+    this.alert.show = true
+  },
+  watch: {},
   created() {
     // add app events
   },
